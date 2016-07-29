@@ -1,0 +1,43 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#main-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a routerLink="" class="navbar-brand" style="cursor: pointer">Blog</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="main-nav">
+            <ul class="nav navbar-nav">
+                <li routerLinkActive="active">
+                    <a routerLink="/about">About</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a routerLink="/contact" routerLinkActive="active" href="#">Contact</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li routerLinkActive="active">
+                    <a routerLink="/login" routerLinkActive="active" href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<div class="row">
+    <div class="container" style="padding-top:70px">
+        <div class="col-md-8">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-4">
+            <right-panel></right-panel>
+        </div>
+    </div>
+</div>
