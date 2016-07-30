@@ -13,12 +13,14 @@ var userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        index: true
     },
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        index: true
     },
     role: {
         type: Number,
@@ -43,6 +45,7 @@ userSchema.methods.generateJwt = function () {
     return jwt.sign({
         _id: this._id,
         email: this.email,
+        username: this.username,
         exp: parseInt(expiry.getTime() / 1000)
     }, process.env.JWT_SECRET);
 };

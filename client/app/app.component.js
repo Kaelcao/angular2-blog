@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
 var home_component_1 = require("./components/home/home.component");
-var login_component_1 = require("./components/auth/login.component");
+var auth_component_1 = require("./components/auth/auth.component");
 var admin_component_1 = require("./components/admin/admin.component");
 var AppComponent = (function () {
     function AppComponent() {
@@ -28,7 +28,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'blog-app',
             directives: [router_1.ROUTER_DIRECTIVES],
-            precompile: [home_component_1.HomeComponent, login_component_1.LoginComponent, admin_component_1.AdminComponent],
+            precompile: [home_component_1.HomeComponent, auth_component_1.AuthComponent, admin_component_1.AdminComponent],
             templateUrl: 'app/app.component.html',
             styles: ["\n        /*a.active, a.active:hover,a.active:focus {*/\n            /*background-color: #e7e7e7!important;*/\n        /*}*/\n        /*.nav li {*/\n            /*cursor: pointer;*/\n        /*}*/\n    "]
         }), 

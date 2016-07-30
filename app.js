@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var jwt = require('express-jwt');
 
 require('dotenv').config();
 require('./server/config/db');

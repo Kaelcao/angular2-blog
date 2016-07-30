@@ -1,14 +1,14 @@
 import {Component, AfterViewInit} from '@angular/core';
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {HomeComponent} from "./components/home/home.component";
-import {LoginComponent} from "./components/auth/login.component";
+import {AuthComponent} from "./components/auth/auth.component";
 import {AdminComponent} from "./components/admin/admin.component";
 declare var $:JQueryStatic;
 
 @Component({
     selector: 'blog-app',
     directives: [ROUTER_DIRECTIVES],
-    precompile: [HomeComponent, LoginComponent,AdminComponent],
+    precompile: [HomeComponent, AuthComponent,AdminComponent],
     templateUrl: 'app/app.component.html',
     styles: [`
         /*a.active, a.active:hover,a.active:focus {*/

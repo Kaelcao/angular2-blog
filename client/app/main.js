@@ -6,6 +6,14 @@ var forms_1 = require('@angular/forms');
 var app_routes_1 = require("./app.routes");
 var auth_guard_service_1 = require("./services/auth-guard.service");
 var auth_service_1 = require("./services/auth.service");
+var http_1 = require("@angular/http");
 core_1.enableProdMode();
-platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [forms_1.disableDeprecatedForms(), forms_1.provideForms(), app_routes_1.appRouterProviders, auth_guard_service_1.AuthGuard, auth_service_1.AuthService]);
+platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
+    forms_1.disableDeprecatedForms(),
+    forms_1.provideForms(),
+    app_routes_1.appRouterProviders,
+    auth_guard_service_1.AuthGuard,
+    auth_service_1.AuthService,
+    http_1.HTTP_PROVIDERS
+]);
 //# sourceMappingURL=main.js.map
