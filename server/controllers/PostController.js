@@ -7,7 +7,7 @@ module.exports = {
             if (err) {
                 res.status(500).json(err);
             } else {
-                res.status(200).json(posts);
+                res.status(200).json({data: posts});
             }
         })
     },
@@ -28,7 +28,7 @@ module.exports = {
                     if (err) {
                         res.status(500).json(err);
                     } else {
-                        res.status(200).json(post);
+                        res.status(200).json({data: post});
                     }
                 })
             });

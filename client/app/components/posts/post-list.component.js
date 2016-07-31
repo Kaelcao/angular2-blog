@@ -10,16 +10,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
+var post_service_1 = require("../../services/post.service");
 var PostListComponent = (function () {
-    function PostListComponent(_router) {
+    function PostListComponent(_postService, _router) {
+        this._postService = _postService;
         this._router = _router;
         this.post = {
             _id: "123"
         };
     }
+    PostListComponent.prototype.ngOnInit = function () {
+        this.getPosts();
+    };
     PostListComponent.prototype.onSelect = function (post) {
         this._router.navigate(['posts', post._id]);
         return false;
+    };
+    PostListComponent.prototype.getPosts = function () {
+        var _this = this;
+        this._postService.getPosts()
+            .subscribe(function (posts) {
+            _this.posts = posts;
+            console.log(posts);
+        }, function (error) { return _this.errorMessage = error; });
     };
     PostListComponent = __decorate([
         core_1.Component({
@@ -27,7 +40,7 @@ var PostListComponent = (function () {
             selector: 'blog-posts',
             templateUrl: 'app/components/posts/post-list.component.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [post_service_1.PostService, router_1.Router])
     ], PostListComponent);
     return PostListComponent;
 }());

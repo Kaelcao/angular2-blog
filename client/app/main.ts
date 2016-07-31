@@ -6,6 +6,7 @@ import {appRouterProviders} from "./app.routes";
 import {AuthGuard} from "./services/auth-guard.service";
 import {AuthService} from "./services/auth.service";
 import {HTTP_PROVIDERS} from "@angular/http";
+import {PostService} from "./services/post.service";
 
 enableProdMode();
 
@@ -16,5 +17,6 @@ bootstrap(AppComponent,
         appRouterProviders,
         AuthGuard,
         AuthService,
-        HTTP_PROVIDERS
+        HTTP_PROVIDERS,
+        PostService
     ]);

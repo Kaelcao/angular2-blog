@@ -7,6 +7,7 @@ var app_routes_1 = require("./app.routes");
 var auth_guard_service_1 = require("./services/auth-guard.service");
 var auth_service_1 = require("./services/auth.service");
 var http_1 = require("@angular/http");
+var post_service_1 = require("./services/post.service");
 core_1.enableProdMode();
 platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
     forms_1.disableDeprecatedForms(),
@@ -14,6 +15,7 @@ platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
     app_routes_1.appRouterProviders,
     auth_guard_service_1.AuthGuard,
     auth_service_1.AuthService,
-    http_1.HTTP_PROVIDERS
+    http_1.HTTP_PROVIDERS,
+    post_service_1.PostService
 ]);
 //# sourceMappingURL=main.js.map

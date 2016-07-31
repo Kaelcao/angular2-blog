@@ -13,6 +13,7 @@ var router_1 = require("@angular/router");
 var home_component_1 = require("./components/home/home.component");
 var auth_component_1 = require("./components/auth/auth.component");
 var admin_component_1 = require("./components/admin/admin.component");
+require('./rxjs-operators');
 var AppComponent = (function () {
     function AppComponent() {
         this.pageTitle = "Blog";
