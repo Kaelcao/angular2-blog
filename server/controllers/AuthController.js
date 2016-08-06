@@ -34,7 +34,10 @@ module.exports = {
                 return;
             }
             var token = user.generateJwt();
-            res.status(200).json({token: token});
+            res.status(200).json({
+                username: user.username,
+                token: token
+            });
         })(req, res, next);
 
     }

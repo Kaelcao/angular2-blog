@@ -9,10 +9,6 @@ import {REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl, FormBuilder, Validator
 })
 
 export class AuthComponent {
-    user = {
-        email: '',
-        password: ''
-    };
 
     message: string;
     token: string;
@@ -34,11 +30,11 @@ export class AuthComponent {
     onSubmit() {
         this.message = "Logging in...";
         this.error = '';
-        this._authService.login(this.user.email, this.user.password).subscribe(
+        this._authService.login(this.email.value, this.password.value).subscribe(
             result => {
-                console.log(result);
                 if (result) {
-                    this._router.navigate(['posts']);
+                    let redirect = this._authService.redirectUrl ? this._authService.redirectUrl : '/admin';
+                    this._router.navigate([redirect]);
                 }
                 this.message = "";
             },
@@ -47,7 +43,6 @@ export class AuthComponent {
                 this.message = '';
             }
         );
-
     }
 
     // this.message = 'Trying to log in ...';

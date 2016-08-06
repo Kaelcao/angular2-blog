@@ -17,10 +17,6 @@ var AuthComponent = (function () {
     function AuthComponent(_authService, _router, _formBuilder) {
         this._authService = _authService;
         this._router = _router;
-        this.user = {
-            email: '',
-            password: ''
-        };
         this.email = new forms_1.FormControl("", [forms_1.Validators.required, EmailValidator_1.EmailValidator.emailInvalid]);
         this.password = new forms_1.FormControl("", [forms_1.Validators.required]);
         this.loginForm = _formBuilder.group({
@@ -32,10 +28,10 @@ var AuthComponent = (function () {
         var _this = this;
         this.message = "Logging in...";
         this.error = '';
-        this._authService.login(this.user.email, this.user.password).subscribe(function (result) {
-            console.log(result);
+        this._authService.login(this.email.value, this.password.value).subscribe(function (result) {
             if (result) {
-                _this._router.navigate(['posts']);
+                var redirect = _this._authService.redirectUrl ? _this._authService.redirectUrl : '/admin';
+                _this._router.navigate([redirect]);
             }
             _this.message = "";
         }, function (error) {

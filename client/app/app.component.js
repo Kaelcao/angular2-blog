@@ -31,7 +31,6 @@ var AppComponent = (function () {
             directives: [router_1.ROUTER_DIRECTIVES],
             precompile: [home_component_1.HomeComponent, auth_component_1.AuthComponent, admin_component_1.AdminComponent],
             templateUrl: 'app/app.component.html',
-            styles: ["\n        /*a.active, a.active:hover,a.active:focus {*/\n            /*background-color: #e7e7e7!important;*/\n        /*}*/\n        /*.nav li {*/\n            /*cursor: pointer;*/\n        /*}*/\n    "]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

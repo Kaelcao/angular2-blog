@@ -11,14 +11,6 @@ declare var $:JQueryStatic;
     directives: [ROUTER_DIRECTIVES],
     precompile: [HomeComponent, AuthComponent, AdminComponent],
     templateUrl: 'app/app.component.html',
-    styles: [`
-        /*a.active, a.active:hover,a.active:focus {*/
-            /*background-color: #e7e7e7!important;*/
-        /*}*/
-        /*.nav li {*/
-            /*cursor: pointer;*/
-        /*}*/
-    `]
 })
 export class AppComponent implements AfterViewInit {
     pageTitle:string = "Blog";

@@ -30,6 +30,8 @@ var AuthService = (function () {
             .map(function (res) { return res.json(); })
             .map(function (res) {
             localStorage.setItem('auth_token', res.token);
+            console.log(res);
+            localStorage.setItem('username', res.username);
             _this.loggedIn = true;
             return _this.loggedIn;
         }).catch(function (error) {
@@ -38,6 +40,7 @@ var AuthService = (function () {
     };
     AuthService.prototype.logout = function () {
         localStorage.removeItem('auth_token');
+        localStorage.removeItem('username');
         this.loggedIn = false;
     };
     AuthService = __decorate([

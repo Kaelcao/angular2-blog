@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var AdminComponent = (function () {
     function AdminComponent() {
     }
@@ -21,6 +22,7 @@ var AdminComponent = (function () {
     AdminComponent = __decorate([
         core_1.Component({
             templateUrl: 'app/components/admin/admin.component.html',
+            directives: [router_1.ROUTER_DIRECTIVES],
             styleUrls: [
                 'app/components/admin/simple-sidebar.css'
             ]

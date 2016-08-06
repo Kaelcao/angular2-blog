@@ -30,6 +30,8 @@ export class AuthService {
             .map((res) => {
 
                 localStorage.setItem('auth_token', res.token);
+                console.log(res);
+                localStorage.setItem('username', res.username);
                 this.loggedIn = true;
                 return this.loggedIn;
 
@@ -40,6 +42,7 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem('auth_token');
+        localStorage.removeItem('username');
         this.loggedIn = false;
     }
 }

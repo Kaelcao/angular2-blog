@@ -14,10 +14,19 @@ var right_panel_component_1 = require("../rightPanels/right-panel.component");
 var router_1 = require("@angular/router");
 var about_component_1 = require("../about/about.component");
 var contact_component_1 = require("../contact/contact.component");
+var auth_service_1 = require("../../services/auth.service");
 var HomeComponent = (function () {
-    function HomeComponent() {
+    function HomeComponent(_authService) {
+        this._authService = _authService;
         this.pageTitle = "Blog";
+        this.isLoggedIn = _authService.loggedIn;
+        this.username = localStorage.getItem('username');
     }
+    HomeComponent.prototype.logout = function () {
+        this._authService.logout();
+        this.isLoggedIn = false;
+        return false;
+    };
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'home',
@@ -25,7 +34,7 @@ var HomeComponent = (function () {
             directives: [post_list_component_1.PostListComponent, right_panel_component_1.RightPanelComponent, router_1.ROUTER_DIRECTIVES],
             templateUrl: 'app/components/home/home.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.AuthService])
     ], HomeComponent);
     return HomeComponent;
 }());
