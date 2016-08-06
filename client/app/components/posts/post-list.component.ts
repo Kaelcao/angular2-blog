@@ -10,22 +10,18 @@ import {PostService} from "../../services/post.service";
 })
 
 export class PostListComponent implements OnInit {
-    posts:Post[];
-    errorMessage:string;
+    posts: Post[];
+    errorMessage: string;
 
-    constructor(private _postService:PostService, private _router:Router) {
+    constructor(private _postService: PostService, private _router: Router) {
     }
 
     ngOnInit() {
         this.getPosts();
     }
 
-    private post:Post = {
-        _id: "123"
-    };
 
-
-    onSelect(post:Post):boolean {
+    onSelect(post: Post): boolean {
         this._router.navigate(['posts', post._id]);
         return false;
     }

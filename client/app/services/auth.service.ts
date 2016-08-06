@@ -4,19 +4,42 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
+import {Http, Headers, RequestOptions} from "@angular/http";
 
 @Injectable()
 export class AuthService {
-    isLoggedIn:boolean = false;
+    loggedIn: boolean = false;
 
-    // store the URL so we can redirect after logging in
-    redirectUrl:string;
+    redirectUrl: string;
 
-    login() {
-        return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
+    constructor(private _http: Http) {
+        this.loggedIn = !!localStorage.getItem('auth_token');
+    }
+
+    login(email, password) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({headers: headers});
+        return this._http
+            .post(
+                '/api/login',
+                JSON.stringify({email, password}),
+                options
+            )
+            .map(res => res.json())
+            .map((res) => {
+
+                localStorage.setItem('auth_token', res.token);
+                this.loggedIn = true;
+                return this.loggedIn;
+
+            }).catch(function (error: any) {
+                return Observable.throw(error.json());
+            });
     }
 
     logout() {
-        this.isLoggedIn = false;
+        localStorage.removeItem('auth_token');
+        this.loggedIn = false;
     }
 }

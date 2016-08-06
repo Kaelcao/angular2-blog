@@ -15,9 +15,6 @@ var PostListComponent = (function () {
     function PostListComponent(_postService, _router) {
         this._postService = _postService;
         this._router = _router;
-        this.post = {
-            _id: "123"
-        };
     }
     PostListComponent.prototype.ngOnInit = function () {
         this.getPosts();

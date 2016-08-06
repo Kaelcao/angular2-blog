@@ -13,20 +13,36 @@ var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/observable/of');
 require('rxjs/add/operator/do');
 require('rxjs/add/operator/delay');
+var http_1 = require("@angular/http");
 var AuthService = (function () {
-    function AuthService() {
-        this.isLoggedIn = false;
+    function AuthService(_http) {
+        this._http = _http;
+        this.loggedIn = false;
+        this.loggedIn = !!localStorage.getItem('auth_token');
     }
-    AuthService.prototype.login = function () {
+    AuthService.prototype.login = function (email, password) {
         var _this = this;
-        return Observable_1.Observable.of(true).delay(1000).do(function (val) { return _this.isLoggedIn = true; });
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http
+            .post('/api/login', JSON.stringify({ email: email, password: password }), options)
+            .map(function (res) { return res.json(); })
+            .map(function (res) {
+            localStorage.setItem('auth_token', res.token);
+            _this.loggedIn = true;
+            return _this.loggedIn;
+        }).catch(function (error) {
+            return Observable_1.Observable.throw(error.json());
+        });
     };
     AuthService.prototype.logout = function () {
-        this.isLoggedIn = false;
+        localStorage.removeItem('auth_token');
+        this.loggedIn = false;
     };
     AuthService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], AuthService);
     return AuthService;
 }());

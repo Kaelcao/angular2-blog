@@ -17,7 +17,7 @@ var AuthGuard = (function () {
         this._router = _router;
     }
     AuthGuard.prototype.canActivate = function (route, state) {
-        if (this._authService.isLoggedIn) {
+        if (this._authService.loggedIn) {
             return true;
         }
         // Store the attempted URL for redirecting
