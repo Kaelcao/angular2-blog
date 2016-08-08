@@ -16,6 +16,12 @@ export class AuthGuard implements CanActivate {
             var today = new Date();
             if (exp < today) {
                 this._authService.logout();
+
+                // Store the attempted URL for redirecting
+                this._authService.redirectUrl = state.url;
+
+                // Navigate to the login page
+                this._router.navigate(['/login']);
                 return false;
             }
             return true;
