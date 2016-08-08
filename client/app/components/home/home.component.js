@@ -20,7 +20,7 @@ var HomeComponent = (function () {
         this._authService = _authService;
         this.pageTitle = "Blog";
         this.isLoggedIn = _authService.loggedIn;
-        this.username = localStorage.getItem('username');
+        this.user = JSON.parse(localStorage.getItem('user'));
     }
     HomeComponent.prototype.logout = function () {
         this._authService.logout();

@@ -18,7 +18,7 @@ var AuthService = (function () {
     function AuthService(_http) {
         this._http = _http;
         this.loggedIn = false;
-        this.loggedIn = !!localStorage.getItem('auth_token');
+        this.loggedIn = !!localStorage.getItem('id_token');
     }
     AuthService.prototype.login = function (email, password) {
         var _this = this;
@@ -27,20 +27,22 @@ var AuthService = (function () {
         var options = new http_1.RequestOptions({ headers: headers });
         return this._http
             .post('/api/login', JSON.stringify({ email: email, password: password }), options)
-            .map(function (res) { return res.json(); })
             .map(function (res) {
-            localStorage.setItem('auth_token', res.token);
-            console.log(res);
-            localStorage.setItem('username', res.username);
+            return res.json();
+        })
+            .map(function (res) {
+            localStorage.setItem('id_token', res.token);
+            localStorage.setItem('user', JSON.stringify(res.user));
             _this.loggedIn = true;
             return _this.loggedIn;
         }).catch(function (error) {
+            console.log(error);
             return Observable_1.Observable.throw(error.json());
         });
     };
     AuthService.prototype.logout = function () {
-        localStorage.removeItem('auth_token');
-        localStorage.removeItem('username');
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('user');
         this.loggedIn = false;
     };
     AuthService = __decorate([

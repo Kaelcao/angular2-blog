@@ -18,6 +18,14 @@ var AuthGuard = (function () {
     }
     AuthGuard.prototype.canActivate = function (route, state) {
         if (this._authService.loggedIn) {
+            var id_token = localStorage.getItem('id_token');
+            var payload = JSON.parse(atob(id_token.split('.')[1]));
+            var exp = new Date(payload.exp * 1000);
+            var today = new Date();
+            if (exp < today) {
+                this._authService.logout();
+                return false;
+            }
             return true;
         }
         // Store the attempted URL for redirecting

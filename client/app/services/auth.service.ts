@@ -13,7 +13,7 @@ export class AuthService {
     redirectUrl: string;
 
     constructor(private _http: Http) {
-        this.loggedIn = !!localStorage.getItem('auth_token');
+        this.loggedIn = !!localStorage.getItem('id_token');
     }
 
     login(email, password) {
@@ -26,23 +26,24 @@ export class AuthService {
                 JSON.stringify({email, password}),
                 options
             )
-            .map(res => res.json())
+            .map(res => {
+                return res.json();
+            })
             .map((res) => {
-
-                localStorage.setItem('auth_token', res.token);
-                console.log(res);
-                localStorage.setItem('username', res.username);
+                localStorage.setItem('id_token', res.token);
+                localStorage.setItem('user', JSON.stringify(res.user));
                 this.loggedIn = true;
                 return this.loggedIn;
 
             }).catch(function (error: any) {
+                console.log(error);
                 return Observable.throw(error.json());
             });
     }
 
     logout() {
-        localStorage.removeItem('auth_token');
-        localStorage.removeItem('username');
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('user');
         this.loggedIn = false;
     }
 }

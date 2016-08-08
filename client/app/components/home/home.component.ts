@@ -14,12 +14,12 @@ import {AuthService} from "../../services/auth.service";
 })
 export class HomeComponent {
     isLoggedIn: boolean;
-    username: string;
+    user: any;
     pageTitle: string = "Blog";
 
     constructor(public _authService: AuthService) {
         this.isLoggedIn = _authService.loggedIn;
-        this.username = localStorage.getItem('username');
+        this.user = JSON.parse(localStorage.getItem('user'));
     }
 
     logout() {
